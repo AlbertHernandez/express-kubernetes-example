@@ -33,13 +33,13 @@ Also, you need to configure docker to work with minikube, you can do it running 
 
 ## 🚀 Starting the cluster
 
+First, we need to start the minikube cluster, we can do it running:
+
 ```shell
 minikube start
 ```
 
-## ⚡ Deploy kubernetes apps
-
-We have automated the deployment of the kubernetes apps using an script, you can run it using:
+Now, we need to build our docker image and create all the kubernetes resources we have configured, to do so we have automated the process with an script that you can run with:
 
 ```shell
 make deploy-kubernetes-apps
@@ -50,8 +50,6 @@ Now, you can get resources created in the cluster, for example, the pods, by run
 ```shell
 kubectl get pods
 ```
-
-## 🛑 Stop the cluster
 
 When you have finished working with the cluster, you can stop it running:
 
