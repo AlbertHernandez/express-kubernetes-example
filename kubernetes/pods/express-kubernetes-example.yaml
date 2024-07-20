@@ -11,7 +11,13 @@ spec:
       name: express-kubernetes-example
       ports:
         - containerPort: 3000
-      resources: {}
+      resources:
+        requests:
+          cpu: 200m
+          memory: 128Mi
+        limits:
+          cpu: 256m
+          memory: 300Mi
   dnsPolicy: ClusterFirst
   restartPolicy: Never
 status: {}
