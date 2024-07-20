@@ -1,22 +1,22 @@
 {
-  "name": "express-typescript-service-template",
+  "name": "express-kubernetes-example",
   "version": "1.0.0",
   "type": "module",
   "description": "Skeleton for new typescript services based on express",
   "author": "alberthernandezdev@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AlbertHernandez/express-typescript-service-template/issues"
+    "url": "https://github.com/AlbertHernandez/express-kubernetes-example/issues"
   },
-  "homepage": "https://github.com/AlbertHernandez/express-typescript-service-template#readme",
+  "homepage": "https://github.com/AlbertHernandez/express-kubernetes-example#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlbertHernandez/express-typescript-service-template.git"
+    "url": "git+https://github.com/AlbertHernandez/express-kubernetes-example.git"
   },
   "keywords": [
     "typescript",
     "express",
-    "template"
+    "kubernetes"
   ],
   "engines": {
     "node": ">=18.x",

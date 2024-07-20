@@ -2,14 +2,14 @@
   <a href="https://expressjs.com/" target="blank"><img src="images/express-and-ts.png" alt="Express Logo" width="512" /></a>
 </p>
 
-<h1 align="center">⭐ Express Typescript Service Template ⭐</h1>
+<h1 align="center">⭐ Express Kubernetes Example ⭐</h1>
 
 <p align="center">
-  Template for new services based on Express and Typescript with the Best Practices and Ready for Production
+  Example of an express service working in Kubernetes
 </p>
 
 <p align="center">
-  <a href="https://github.com/AlbertHernandez/express-typescript-service-template/actions/workflows/node.yml?branch=main"><img src="https://github.com/AlbertHernandez/express-typescript-service-template/actions/workflows/node.yml/badge.svg?branch=main" alt="nodejs"/></a>
+  <a href="https://github.com/AlbertHernandez/express-kubernetes-example/actions/workflows/node.yml?branch=main"><img src="https://github.com/AlbertHernandez/express-kubernetes-example/actions/workflows/node.yml/badge.svg?branch=main" alt="nodejs"/></a>
   <a href="https://nodejs.org/docs/latest-v20.x/api/index.html"><img src="https://img.shields.io/badge/node-20.x-green.svg" alt="node"/></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/typescript-5.x-blue.svg" alt="typescript"/></a>
   <a href="https://www.npmjs.com/"><img src="https://img.shields.io/badge/npm-10.x-red.svg" alt="npm"/></a>
@@ -20,34 +20,15 @@
 
 ## 👀 Motivation
 
-Starting a new service in NodeJS can be a bit frustrating, there are a lot of things to consider if we want to have a really good starting point where later we can iterate.
+The main idea of this repository is to show how we can create an express service using typescript and running it in Kubernetes. Note that this repository is not a template for starting new projects so we will not keep it up to date in terms of dependencies, vulnerabilities or new practices, if you are looking for a new template we recommend you to check the [project templates](#-project-templates) section.
 
-The main objective of this template is to provide a good base configuration for our NodeJS services that we can start using and move to production as soon as possible.
+## 🤩 Project templates
 
-## 🌟 What is including this template?
+Are you thinking in start new projects in nestjs, other frameworks or create a super fancy library? I recommend you to check the following templates I have been working on:
 
-1. 🐳 Fully dockerized service ready for development and production environments with the best practices for docker, trying to provide a performance and small image just with the code we really need in your environments.
-2. 👷 Use [SWC](https://swc.rs/) for compiling and running the tests of the service.
-3. ⚡️ Configure [Express](https://expressjs.com/) as HTTP framework.
-4. 🐶 Integration with [husky](https://typicode.github.io/husky/) to ensure we have good quality and conventions while we are developing like:
-   - 💅 Running the linter over the files that have been changed
-   - 💬 Use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to ensure our commits have a convention.
-   - ✅ Run the tests automatically.
-   - ⚙️ Check our project does not have type errors with Typescript.
-   - 🙊 Check typos to ensure we don't have grammar mistakes.
-5. 🧪 Testing with [Vitest](https://vitest.dev/) and [supertest](https://github.com/ladjs/supertest) for unit and e2e tests.
-6. 🏎️ Performance testing using [k6](https://grafana.com/oss/k6/).
-7. 🤜🤛 Combine unit and e2e test coverage. In the services we may have both type of tests, unit and e2e tests, and usually we would like to see what is the combined test coverage, so we can see the full picture.
-8. 📌 Custom path aliases, where you can define your own paths (you will be able to use imports like `@/shared/logger` instead of `../../../src/shared/logger`).
-9. 🚀 CI/CD using GitHub Actions, helping ensure a good quality of our code and providing useful insights about dependencies, security vulnerabilities and others.
-10. 🐦‍🔥 Usage of ESModules instead of CommonJS, which is the standard in JavaScript.
-
-## 🤩 Other templates
-
-Are you thinking in start new projects in other frameworks or create a super fancy library? If you like this template there are others base on this you can check:
-
-- [Template for new Typescript Libraries](https://github.com/AlbertHernandez/typescript-library-template)
 - [Template for new NestJS Services](https://github.com/AlbertHernandez/nestjs-service-template)
+- [Template for new Typescript Libraries](https://github.com/AlbertHernandez/typescript-library-template)
+- [Template for new Typescript Express Services](https://github.com/AlbertHernandez/express-kubernetes-example)
 - [Template for new GitHub Actions based on NodeJS](https://github.com/AlbertHernandez/github-action-nodejs-template)
 
 ## 🧑‍💻 Developing
