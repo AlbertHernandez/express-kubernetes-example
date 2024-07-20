@@ -3,7 +3,9 @@
 # Usage: ./deploy_app.sh --app=<app_name> --env=<env>
 # Example: ./deploy_app.sh --app="express-kubernetes-example" --env="development"
 
-source "../utils/logger.sh"
+source "./logger.sh"
+source "./get_image_name.sh"
+source "./update_pods_image_label.sh"
 
 function log_help() {
   INFO "🚁 Usage: ./deploy_app.sh --app=<app_name> --env=<env>"
@@ -74,12 +76,6 @@ function check_arguments() {
   EXIT
 }
 
-function get_image_name() {
-  local commit_hash=$(git rev-parse --short HEAD)
-  local image_name="$app_name:$commit_hash"
-  echo "$image_name"
-}
-
 function build_docker_image() {
   ENTER
   local image_name=$1
@@ -96,28 +92,15 @@ function update_kubernetes_deployment() {
   EXIT
 }
 
-function update_pods_image_label() {
-  ENTER
-  local image_name=$1
-  local image_id=$(echo "$image_name" | cut -d':' -f2)
-  INFO "🤗 Updating kubernetes deployment with the new image id $image_id"
-  local pods=$(kubectl get pods -n $env -l app.kubernetes.io/name=$app_name -o name)
-  for pod in $pods; do
-    DEBUG "📝 Adding label to pod $pod"
-    kubectl label $pod image=$image_id -n $env --overwrite
-  done
-  EXIT
-}
-
 function main() {
   ENTER
   parse_arguments "$@"
   check_arguments
   INFO "🚀 Deploying the app $app_name to $env"
-  local image_name=$(get_image_name)
+  local image_name=$(get_image_name $app_name)
   build_docker_image $image_name
   update_kubernetes_deployment $image_name
-  update_pods_image_label $image_name
+  update_pods_image_label $app_name $env $image_name
   EXIT
 }
 
