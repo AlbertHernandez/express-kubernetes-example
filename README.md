@@ -1,21 +1,11 @@
 <p align="center">
-  <a href="https://expressjs.com/" target="blank"><img src="images/express-and-ts.png" alt="Express Logo" width="512" /></a>
+  <a href="https://kubernetes.io/" target="blank"><img src="images/k8s-nodejs.png" alt="NodeJS K8s Logo" width="512" /></a>
 </p>
 
 <h1 align="center">⭐ Express Kubernetes Example ⭐</h1>
 
 <p align="center">
   Example of an express service working in Kubernetes
-</p>
-
-<p align="center">
-  <a href="https://github.com/AlbertHernandez/express-kubernetes-example/actions/workflows/node.yml?branch=main"><img src="https://github.com/AlbertHernandez/express-kubernetes-example/actions/workflows/node.yml/badge.svg?branch=main" alt="nodejs"/></a>
-  <a href="https://nodejs.org/docs/latest-v20.x/api/index.html"><img src="https://img.shields.io/badge/node-20.x-green.svg" alt="node"/></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/typescript-5.x-blue.svg" alt="typescript"/></a>
-  <a href="https://www.npmjs.com/"><img src="https://img.shields.io/badge/npm-10.x-red.svg" alt="npm"/></a>
-  <a href="https://swc.rs/"><img src="https://img.shields.io/badge/Compiler-SWC_-orange.svg" alt="swc"/></a>
-  <a href="https://vitest.dev/"><img src="https://img.shields.io/badge/Test-Vitest_-yellow.svg" alt="swc"/></a>
-  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Dockerized 🐳_-blue.svg" alt="docker"/></a>
 </p>
 
 ## 👀 Motivation
