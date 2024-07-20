@@ -2,6 +2,7 @@ extends: default
 
 ignore: |
   node_modules/
+  kubernetes/hpas/metrics-server/*
 
 rules:
   document-start:
