@@ -74,18 +74,27 @@ function check_arguments() {
   EXIT
 }
 
+function get_image_name() {
+  local timestamp=$(date +%Y%m%d%H%M%S)
+  local image_name="$app_name:$env-$timestamp"
+  echo "$image_name"
+}
+
 function build_docker_image() {
   ENTER
-  INFO "🐳 Building docker image"
-  docker build -t $app_name:$env -f ../../Dockerfile ../../
+  local image_name=$1
+  INFO "🐳 Building docker image $image_name"
+  docker build -t $image_name -t $app_name:$env -f ../../Dockerfile ../../
   EXIT
 }
 
-function apply_kubernetes_resources() {
+function update_kubernetes_deployment() {
   ENTER
-  INFO "🚀 Applying kubernetes resources"
-  kubectl apply -f ../apps/$app_name/deployment.yaml -n $env
+  local image_name=$1
+  INFO "💃 Updating kubernetes deployment with the new image $image_name"
+  kubectl set image deployment/$app_name $app_name=$image_name -n $env
   EXIT
+  echo $image_name
 }
 
 function main() {
@@ -93,8 +102,9 @@ function main() {
   parse_arguments "$@"
   check_arguments
   INFO "🚀 Deploying the app $app_name to $env"
-  build_docker_image
-  apply_kubernetes_resources
+  local image_name=$(get_image_name)
+  build_docker_image $image_name
+  update_kubernetes_deployment $image_name
   EXIT
 }
 
