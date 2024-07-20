@@ -1,15 +1,10 @@
 import express from "express";
 
-import { ConsoleLogger } from "@/shared/logger/console-logger";
-
 import { HealthController } from "./health-controller";
 
 const healthRouter = express.Router();
 
-const logger = new ConsoleLogger();
-const healthController = new HealthController({
-  logger,
-});
+const healthController = new HealthController();
 
 healthRouter.get("/", healthController.run.bind(healthController));
 
