@@ -49,6 +49,12 @@ Now, you can get resources created in the cluster, for example, the pods, by run
 kubectl get pods
 ```
 
+In case you want to delete all the cluster, you can run:
+
+```shell
+make delete-kubernetes-cluster
+```
+
 ## 🧑‍💻 Developing
 
 First, we will need to create our .env file, we can create a copy from the example one:
