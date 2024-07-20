@@ -75,8 +75,8 @@ function check_arguments() {
 }
 
 function get_image_name() {
-  local timestamp=$(date +%Y%m%d%H%M%S)
-  local image_name="$app_name:$env-$timestamp"
+  local commit_hash=$(git rev-parse --short HEAD)
+  local image_name="$app_name:$commit_hash"
   echo "$image_name"
 }
 
@@ -94,7 +94,19 @@ function update_kubernetes_deployment() {
   INFO "💃 Updating kubernetes deployment with the new image $image_name"
   kubectl set image deployment/$app_name $app_name=$image_name -n $env
   EXIT
-  echo $image_name
+}
+
+function update_pods_image_label() {
+  ENTER
+  local image_name=$1
+  local image_id=$(echo "$image_name" | cut -d':' -f2)
+  INFO "🤗 Updating kubernetes deployment with the new image id $image_id"
+  local pods=$(kubectl get pods -n $env -l app.kubernetes.io/name=$app_name -o name)
+  for pod in $pods; do
+    DEBUG "📝 Adding label to pod $pod"
+    kubectl label $pod image=$image_id -n $env --overwrite
+  done
+  EXIT
 }
 
 function main() {
@@ -105,6 +117,7 @@ function main() {
   local image_name=$(get_image_name)
   build_docker_image $image_name
   update_kubernetes_deployment $image_name
+  update_pods_image_label $image_name
   EXIT
 }
 
