@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: null
-  labels:
-    run: express-kubernetes-example
   name: express-kubernetes-example
+  labels:
+    app: express-kubernetes-example
 spec:
   containers:
   - image: express-kubernetes-example

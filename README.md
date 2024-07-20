@@ -29,6 +29,8 @@ In this section we are going to explain how to start a Kubernetes cluster using 
 
 First, we should make sure we have installed [kubectl](https://kubernetes.io/docs/reference/kubectl/introduction/) and [minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download) in our machine. If you are using a mac, you can install them using brew with `brew install kubectl` and `brew install minikube` respectively.
 
+Also, you need to configure docker to work with minikube, you can do it running `eval $(minikube docker-env)`
+
 ## 🚀 Starting the cluster
 
 ```shell
