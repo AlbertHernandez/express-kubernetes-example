@@ -49,6 +49,8 @@ Now, you can get resources created in the cluster, for example, the pods, by run
 kubectl get pods
 ```
 
+If you want to deploy a new version of the service, you should make a new commit and run `make deploy-app`.
+
 In case you want to delete all the cluster, you can run:
 
 ```shell
