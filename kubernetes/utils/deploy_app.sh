@@ -91,6 +91,7 @@ function main() {
   INFO "🚀 Deploying the app $app_name to $env"
   build_docker_image $app_name $env
   update_kubernetes_deployment
+  INFO "🎉 Successfully deployed"
   EXIT
 }
 
