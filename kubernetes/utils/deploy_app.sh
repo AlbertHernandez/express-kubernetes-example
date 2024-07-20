@@ -6,6 +6,7 @@
 source "./logger.sh"
 source "./get_image_name.sh"
 source "./build_docker_image.sh"
+source "./update_version_label_in_kubernetes_deployment.sh"
 
 function log_help() {
   INFO "🚁 Usage: ./deploy_app.sh --app=<app_name> --env=<env>"
@@ -76,11 +77,12 @@ function check_arguments() {
   EXIT
 }
 
-function update_kubernetes_deployment() {
+function label_kubernetes_deployment() {
   ENTER
-  local image_name=$(get_image_name $app_name)
-  INFO "💃 Updating kubernetes deployment with the new image $image_name"
-  kubectl set image deployment/$app_name $app_name=$image_name -n $env
+  local image_name=$1
+  local image_tag=$(echo $image_name | cut -d':' -f2)
+  DEBUG "📝 Adding label 'image=$image_tag' to kubernetes deployment $app_name"
+  kubectl label deployment/$app_name version=$image_tag -n $env --overwrite
   EXIT
 }
 
@@ -90,7 +92,7 @@ function main() {
   check_arguments
   INFO "🚀 Deploying the app $app_name to $env"
   build_docker_image $app_name $env
-  update_kubernetes_deployment
+  update_version_label_in_kubernetes_deployment $app_name $env
   INFO "🎉 Successfully deployed!"
   EXIT
 }
