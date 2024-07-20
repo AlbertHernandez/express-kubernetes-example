@@ -1,4 +1,5 @@
-source "../utils/logger.sh"
+source "./logger.sh"
+source "./build_docker_image.sh"
 
 function create_namespaces() {
   ENTER
@@ -14,7 +15,7 @@ function configure_hpa_tools() {
 
 function create_express_kubernetes_example_resources() {
   ENTER
-  docker build -t express-kubernetes-example:development -f ../../Dockerfile ../../
+  build_docker_image "express-kubernetes-example" "development"
   kubectl apply -f ../apps/express-kubernetes-example/deployment.yaml -n development
   kubectl apply -f ../apps/express-kubernetes-example/service.yaml -n development
   kubectl apply -f ../apps/express-kubernetes-example/hpa.yaml -n development

@@ -4,7 +4,8 @@
 # Example: ./deploy_app.sh --app="express-kubernetes-example" --env="development"
 
 source "./logger.sh"
-source "./update_pods_image_label.sh"
+source "./get_image_name.sh"
+source "./build_docker_image.sh"
 
 function log_help() {
   INFO "🚁 Usage: ./deploy_app.sh --app=<app_name> --env=<env>"
@@ -75,23 +76,9 @@ function check_arguments() {
   EXIT
 }
 
-function get_image_name() {
-  local commit_hash=$(git rev-parse --short HEAD)
-  local image_name="$app_name:$commit_hash"
-  echo "$image_name"
-}
-
-function build_docker_image() {
-  ENTER
-  local image_name=$1
-  INFO "🐳 Building docker image $image_name"
-  docker build -t $image_name -t $app_name:$env -f ../../Dockerfile ../../
-  EXIT
-}
-
 function update_kubernetes_deployment() {
   ENTER
-  local image_name=$1
+  local image_name=$(get_image_name $app_name)
   INFO "💃 Updating kubernetes deployment with the new image $image_name"
   kubectl set image deployment/$app_name $app_name=$image_name -n $env
   EXIT
@@ -102,9 +89,8 @@ function main() {
   parse_arguments "$@"
   check_arguments
   INFO "🚀 Deploying the app $app_name to $env"
-  local image_name=$(get_image_name)
-  build_docker_image $image_name
-  update_kubernetes_deployment $image_name
+  build_docker_image $app_name $env
+  update_kubernetes_deployment
   EXIT
 }
 
