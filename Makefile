@@ -3,3 +3,6 @@ create-kubernetes-cluster:
 
 delete-kubernetes-cluster:
 	cd kubernetes/utils && ./delete_kubernetes_cluster.sh
+
+deploy-app:
+	cd kubernetes/utils && ./deploy_app.sh --app="express-kubernetes-example" --env="development"
