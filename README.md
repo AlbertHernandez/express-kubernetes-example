@@ -21,6 +21,42 @@ Are you thinking in start new projects in nestjs, other frameworks or create a s
 - [Template for new Typescript Express Services](https://github.com/AlbertHernandez/express-kubernetes-example)
 - [Template for new GitHub Actions based on NodeJS](https://github.com/AlbertHernandez/github-action-nodejs-template)
 
+# 🐳 Starting the Kubernetes cluster
+
+In this section we are going to explain how to start a Kubernetes cluster using minikube for local development.
+
+## ⚙️ Installation
+
+First, we should make sure we have installed [kubectl](https://kubernetes.io/docs/reference/kubectl/introduction/) and [minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download) in our machine. If you are using a mac, you can install them using brew with `brew install kubectl` and `brew install minikube` respectively.
+
+## 🚀 Starting the cluster
+
+```shell
+minikube start
+```
+
+## ⚡ Deploy kubernetes apps
+
+We have automated the deployment of the kubernetes apps using an script, you can run it using:
+
+```shell
+make deploy-kubernetes-apps
+```
+
+Now, you can get resources created in the cluster, for example, the pods, by running:
+
+```shell
+kubectl get pods
+```
+
+## 🛑 Stop the cluster
+
+When you have finished working with the cluster, you can stop it running:
+
+```shell
+minikube stop
+```
+
 ## 🧑‍💻 Developing
 
 First, we will need to create our .env file, we can create a copy from the example one:
@@ -72,57 +108,4 @@ If you want to stop developing, you can stop the service running:
 
 ```bash
 docker-compose down
-```
-
-## ⚙️ Building
-
-```bash
-npm run build
-```
-
-## ✅ Testing
-
-The service provide different scripts for running the tests, to run all of them you can run:
-
-```bash
-npm run test
-```
-
-If you are interested just in the unit tests, you can run:
-
-```bash
-npm run test:unit
-```
-
-Or if you want e2e tests, you can execute:
-
-```bash
-npm run test:e2e
-```
-
-We also have performance testing with [k6](https://k6.io/), if you want to run it via docker, execute:
-
-```bash
-docker-compose up k6
-```
-
-Or if you want to run it from your machine, execute:
-
-```bash
-brew install k6
-npm run test:performance
-```
-
-## 💅 Linting
-
-To run the linter you can execute:
-
-```bash
-npm run lint
-```
-
-And for trying to fix lint issues automatically, you can run:
-
-```bash
-npm run lint:fix
 ```

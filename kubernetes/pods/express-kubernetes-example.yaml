@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: express-kubernetes-example
+  name: express-kubernetes-example
+spec:
+  containers:
+  - image: express-kubernetes-example
+    imagePullPolicy: Never
+    name: express-kubernetes-example
+    ports:
+    - containerPort: 3000
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
