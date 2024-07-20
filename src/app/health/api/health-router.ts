@@ -1,6 +1,6 @@
 import express from "express";
 
-import { ConsoleLogger } from "@/shared/logger/console-logger.ts";
+import { ConsoleLogger } from "@/shared/logger/console-logger";
 
 import { HealthController } from "./health-controller";
 
