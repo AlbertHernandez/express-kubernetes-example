@@ -1,2 +1,2 @@
-deploy-kubernetes-apps:
-	cd kubernetes/utils && ./deploy_kubernetes_apps.sh
+create-kubernetes-cluster:
+	cd kubernetes/utils && ./create_kubernetes_cluster.sh

@@ -40,7 +40,7 @@ Now, we need to install [docker desktop](https://www.docker.com/products/docker-
 Once docker desktop is running and Kubernetes is enabled, we need to build our docker image and create all the kubernetes resources we have configured, to do so we have automated the process with an script that you can run with:
 
 ```shell
-make deploy-kubernetes-apps
+make create-kubernetes-cluster
 ```
 
 Now, you can get resources created in the cluster, for example, the pods, by running:
