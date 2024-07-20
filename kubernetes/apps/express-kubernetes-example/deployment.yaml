@@ -2,18 +2,30 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: express-kubernetes-example
+  namespace: development
   labels:
     app: express-kubernetes-example
+    component: server
+    part-of: express-kubernetes-example
+    environment: development
+    technology: express
+    service-type: backend
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: express-kubernetes-example
+      environment: development
   strategy: {}
   template:
     metadata:
       labels:
         app: express-kubernetes-example
+        component: server
+        part-of: express-kubernetes-example
+        environment: development
+        technology: express
+        service-type: backend
     spec:
       containers:
         - image: express-kubernetes-example

@@ -2,6 +2,14 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: express-kubernetes-example
+  namespace: development
+  labels:
+    app: express-kubernetes-example
+    component: server
+    part-of: express-kubernetes-example
+    environment: development
+    technology: express
+    service-type: backend
 spec:
   maxReplicas: 10
   minReplicas: 2

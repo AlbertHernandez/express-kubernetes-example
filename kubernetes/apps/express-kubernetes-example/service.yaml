@@ -2,8 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: express-kubernetes-example
+  namespace: development
   labels:
     app: express-kubernetes-example
+    component: server
+    part-of: express-kubernetes-example
+    environment: development
+    technology: express
+    service-type: backend
 spec:
   ports:
     - port: 3000
@@ -11,6 +17,7 @@ spec:
       targetPort: 3000
   selector:
     app: express-kubernetes-example
+    environment: development
   type: ClusterIP
 status:
   loadBalancer: {}
