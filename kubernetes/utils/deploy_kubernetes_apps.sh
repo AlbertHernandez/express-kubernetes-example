@@ -6,9 +6,9 @@ function build_docker_images() {
   EXIT
 }
 
-function start_pods() {
+function start_deployments() {
   ENTER
-  kubectl apply -f ../pods/express-kubernetes-example.yaml
+  kubectl apply -f ../deployments/express-kubernetes-example.yaml
   EXIT
 }
 
@@ -21,7 +21,7 @@ function start_services() {
 function main() {
   ENTER
   build_docker_images
-  start_pods
+  start_deployments
   start_services
   EXIT
 }
