@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "inlineSources": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/src/*": ["src/*"],
+      "@/app/*": ["src/app/*"],
+      "@/contexts/*": ["src/contexts/*"],
+      "@/shared/*": ["src/contexts/shared/*"],
+      "@/tests/*": ["tests/*"]
+    },
+    "types": ["vitest/globals"]
+  },
+  "exclude": ["node_modules", "dist"]
+}
