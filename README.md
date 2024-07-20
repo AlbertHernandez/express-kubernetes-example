@@ -23,23 +23,21 @@ Are you thinking in start new projects in nestjs, other frameworks or create a s
 
 # 🐳 Starting the Kubernetes cluster
 
-In this section we are going to explain how to start a Kubernetes cluster using minikube for local development.
+In this section we are going to explain how to start the Kubernetes cluster using docker-desktop and all the resources we have defined.
 
 ## ⚙️ Installation
 
-First, we should make sure we have installed [kubectl](https://kubernetes.io/docs/reference/kubectl/introduction/) and [minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download) in our machine. If you are using a mac, you can install them using brew with `brew install kubectl` and `brew install minikube` respectively.
+First, let's install [kubectl](https://kubernetes.io/docs/reference/kubectl/introduction/), that is a CLI for interacting with kubernetes, if you don't have it, and you are using a mac, you can install it using brew:
 
-Also, you need to configure docker to work with minikube, you can do it running `eval $(minikube docker-env)`
+```shell
+brew install kubectl
+```
+
+Now, we need to install [docker desktop](https://www.docker.com/products/docker-desktop) app. Once we have it, let's enable Kubernetes, we can do it by going to the settings and enabling the Kubernetes checkbox. For more information, you can check the [official documentation](https://docs.docker.com/desktop/kubernetes/).
 
 ## 🚀 Starting the cluster
 
-First, we need to start the minikube cluster, we can do it running:
-
-```shell
-minikube start
-```
-
-Now, we need to build our docker image and create all the kubernetes resources we have configured, to do so we have automated the process with an script that you can run with:
+Once docker desktop is running and Kubernetes is enabled, we need to build our docker image and create all the kubernetes resources we have configured, to do so we have automated the process with an script that you can run with:
 
 ```shell
 make deploy-kubernetes-apps
@@ -49,12 +47,6 @@ Now, you can get resources created in the cluster, for example, the pods, by run
 
 ```shell
 kubectl get pods
-```
-
-When you have finished working with the cluster, you can stop it running:
-
-```shell
-minikube stop
 ```
 
 ## 🧑‍💻 Developing
