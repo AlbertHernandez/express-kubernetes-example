@@ -23,10 +23,14 @@ spec:
         httpGet:
           path: /api/health
           port: http
+        initialDelaySeconds: 5
+        periodSeconds: 5
       readinessProbe:
         httpGet:
           path: /api/health
           port: http
+        initialDelaySeconds: 5
+        periodSeconds: 5
   dnsPolicy: ClusterFirst
   restartPolicy: Never
 status: {}
