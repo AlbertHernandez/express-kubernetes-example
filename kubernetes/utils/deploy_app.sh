@@ -74,11 +74,27 @@ function check_arguments() {
   EXIT
 }
 
+function build_docker_image() {
+  ENTER
+  INFO "🐳 Building docker image"
+  docker build -t $app_name:$env -f ../../Dockerfile ../../
+  EXIT
+}
+
+function apply_kubernetes_resources() {
+  ENTER
+  INFO "🚀 Applying kubernetes resources"
+  kubectl apply -f ../apps/$app_name/deployment.yaml -n $env
+  EXIT
+}
+
 function main() {
   ENTER
   parse_arguments "$@"
   check_arguments
   INFO "🚀 Deploying the app $app_name to $env"
+  build_docker_image
+  apply_kubernetes_resources
   EXIT
 }
 

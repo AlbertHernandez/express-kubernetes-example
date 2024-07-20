@@ -30,7 +30,7 @@ spec:
         owner: albert
     spec:
       containers:
-        - image: express-kubernetes-example
+        - image: express-kubernetes-example:development
           imagePullPolicy: Never
           name: express-kubernetes-example
           ports:

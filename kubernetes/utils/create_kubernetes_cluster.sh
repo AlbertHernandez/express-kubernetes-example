@@ -14,7 +14,7 @@ function configure_hpa_tools() {
 
 function create_express_kubernetes_example_resources() {
   ENTER
-  docker build -t express-kubernetes-example -f ../../Dockerfile ../../
+  docker build -t express-kubernetes-example:development -f ../../Dockerfile ../../
   kubectl apply -f ../apps/express-kubernetes-example/deployment.yaml -n development
   kubectl apply -f ../apps/express-kubernetes-example/service.yaml -n development
   kubectl apply -f ../apps/express-kubernetes-example/hpa.yaml -n development
