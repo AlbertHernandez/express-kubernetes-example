@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-kubernetes-example
+  labels:
+    app: express-kubernetes-example
+spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: express-kubernetes-example
+  type: ClusterIP
+status:
+  loadBalancer: {}
