@@ -9,9 +9,9 @@ metadata:
     app.kubernetes.io/part-of: express-kubernetes-example
     my-company.com/environment: development
     my-company.com/technology: express
-    my-company.com/service-type: backend
-  annotations:
     my-company.com/owner: albert
+  annotations:
+    my-company.com/description: Example of an express service working in Kubernetes
 spec:
   maxReplicas: 10
   minReplicas: 2

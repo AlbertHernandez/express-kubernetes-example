@@ -2,7 +2,7 @@
   "name": "express-kubernetes-example",
   "version": "1.0.0",
   "type": "module",
-  "description": "Skeleton for new typescript services based on express",
+  "description": "Example of an express service working in Kubernetes",
   "author": "alberthernandezdev@gmail.com",
   "license": "MIT",
   "bugs": {
