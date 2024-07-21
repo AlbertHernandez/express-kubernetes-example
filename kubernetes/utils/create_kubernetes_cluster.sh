@@ -44,7 +44,6 @@ function create_express_kubernetes_example_resources() {
 function create_api_gateway() {
   ENTER
   kubectl apply -f ../cluster/api-gateway/ingress-nginx/nginx-v1.11.1.yaml
-  kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
   kubectl apply -f ../cluster/api-gateway/metallb/metallb-v0.14.7.yaml
   kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io metallb-webhook-configuration
   kubectl apply -f ../cluster/api-gateway/metallb/pool.yaml
@@ -55,9 +54,9 @@ function create_api_gateway() {
 function main() {
   ENTER
   create_namespaces
+  create_api_gateway
   configure_hpa_tools
   create_express_kubernetes_example_resources
-  create_api_gateway
   add_company_entry_to_hosts_file
   EXIT
 }
