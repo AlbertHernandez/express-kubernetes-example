@@ -6,11 +6,11 @@ source "./kubernetes/utils/logger.sh"
 
 function _delete_metallb_pool() {
   ENTER
-  if kubectl get IPAddressPool metallb-pool -n metallb-system > /dev/null 2>&1; then
-    INFO "📝 Deleting IPAddressPool 'metallb-pool' in namespace 'metallb-system'."
-    kubectl delete IPAddressPool metallb-pool -n metallb-system
+  if kubectl get IPAddressPool first-pool -n metallb-system > /dev/null 2>&1; then
+    INFO "📝 Deleting IPAddressPool 'first-pool' in namespace 'metallb-system'."
+    kubectl delete IPAddressPool first-pool -n metallb-system
   else
-    INFO "ℹ️ IPAddressPool 'metallb-pool' does not exist in namespace 'metallb-system'."
+    INFO "ℹ️ IPAddressPool 'first-pool' does not exist in namespace 'metallb-system'."
   fi
   EXIT
 }
