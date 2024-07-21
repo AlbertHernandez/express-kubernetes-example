@@ -49,6 +49,12 @@ Now, you can get resources created in the cluster, for example, the pods, by run
 kubectl get pods -n development
 ```
 
+Also, you should be able to perform request operations to the public services in the cluster, for example, the health endpoint of the express service:
+
+```shell
+curl -i http://my-company.local/api/health
+```
+
 If you want to deploy a new version of the service, you should make a new commit and run:
 
 ```shell
