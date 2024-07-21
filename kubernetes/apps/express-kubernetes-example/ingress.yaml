@@ -4,8 +4,9 @@ metadata:
   name: ingress-express-kubernetes-example
   namespace: development
   labels:
-    app.kubernetes.io/name: ingress-express-kubernetes-example
-    app.kubernetes.io/component: ingress
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/part-of: express-kubernetes-example
     my-company.com/environment: development
     my-company.com/technology: express
