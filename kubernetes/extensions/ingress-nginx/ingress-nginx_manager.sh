@@ -8,3 +8,9 @@ function create_ingress_nginx() {
   kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
   EXIT
 }
+
+function delete_ingress_nginx() {
+  ENTER
+  kubectl delete all --all -n ingress-nginx
+  EXIT
+}

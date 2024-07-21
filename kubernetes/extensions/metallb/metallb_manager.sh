@@ -32,6 +32,7 @@ function delete_metallb_resources() {
   ENTER
   _delete_metallb_pool
   _delete_metallb_l2_advertisement
+  kubectl delete all --all -n metallb-system
   EXIT
 }
 
