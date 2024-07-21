@@ -3,10 +3,10 @@
 # Usage: ./deploy_app.sh --app=<app_name> --env=<env>
 # Example: ./deploy_app.sh --app="express-kubernetes-example" --env="development"
 
-source "../utils/logger.sh"
-source "../utils/get_image_name.sh"
-source "../utils/build_docker_image.sh"
-source "../utils/update_version_label_in_kubernetes_deployment.sh"
+source "./kubernetes/utils/logger.sh"
+source "./kubernetes/utils/get_image_name.sh"
+source "./kubernetes/utils/build_docker_image.sh"
+source "./kubernetes/utils/update_version_label_in_kubernetes_deployment.sh"
 
 function log_help() {
   INFO "🚁 Usage: ./deploy_app.sh --app=<app_name> --env=<env>"
@@ -82,7 +82,7 @@ function update_kubernetes_deployment() {
   local image_name=$(get_image_name $app_name)
   INFO "💃 Updating kubernetes deployment with the new image $image_name"
   kubectl set image deployment/$app_name $app_name=$image_name -n $env
-  label_kubernetes_deployment $image_name
+  update_version_label_in_kubernetes_deployment $app_name $env
   EXIT
 }
 
@@ -93,7 +93,6 @@ function main() {
   INFO "🚀 Deploying the app $app_name to $env"
   build_docker_image $app_name $env
   update_kubernetes_deployment
-  update_version_label_in_kubernetes_deployment
   INFO "🎉 Successfully deployed!"
   EXIT
 }
