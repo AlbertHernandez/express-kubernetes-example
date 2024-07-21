@@ -7,16 +7,17 @@ metadata:
     app.kubernetes.io/name: express-kubernetes-example
     app.kubernetes.io/component: server
     app.kubernetes.io/part-of: express-kubernetes-example
-    environment: development
-    technology: express
-    service-type: backend
-    owner: albert
+    my-company.com/environment: development
+    my-company.com/technology: express
+    my-company.com/service-type: backend
+  annotations:
+    my-company.com/owner: albert
 spec:
   replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: express-kubernetes-example
-      environment: development
+      my-company.com/environment: development
   strategy: {}
   template:
     metadata:
@@ -24,10 +25,11 @@ spec:
         app.kubernetes.io/name: express-kubernetes-example
         app.kubernetes.io/component: server
         app.kubernetes.io/part-of: express-kubernetes-example
-        environment: development
-        technology: express
-        service-type: backend
-        owner: albert
+        my-company.com/environment: development
+        my-company.com/technology: express
+        my-company.com/service-type: backend
+      annotations:
+        my-company.com/owner: albert
     spec:
       containers:
         - image: express-kubernetes-example:development

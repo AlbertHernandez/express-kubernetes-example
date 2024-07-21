@@ -7,10 +7,11 @@ metadata:
     app.kubernetes.io/name: express-kubernetes-example
     app.kubernetes.io/component: server
     app.kubernetes.io/part-of: express-kubernetes-example
-    environment: development
-    technology: express
-    service-type: backend
-    owner: albert
+    my-company.com/environment: development
+    my-company.com/technology: express
+    my-company.com/service-type: backend
+  annotations:
+    my-company.com/owner: albert
 spec:
   maxReplicas: 10
   minReplicas: 2
