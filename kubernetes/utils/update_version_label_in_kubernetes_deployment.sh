@@ -1,8 +1,11 @@
 # Description: This script is used to get the image name for the application.
 # Usage: update_version_label_in_kubernetes_deployment <app_name> <env>
 
-source "./logger.sh"
-source "./get_image_name.sh"
+source "./kubernetes/utils/logger.sh"
+
+# ====================================================== #
+#                     Public API                         #
+# ====================================================== #
 
 function update_version_label_in_kubernetes_deployment() {
   ENTER

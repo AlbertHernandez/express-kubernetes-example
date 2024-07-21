@@ -1,9 +1,11 @@
-#!/bin/bash
-
-source "./logger.sh"
+source "./kubernetes/utils/logger.sh"
 
 ENTRY="127.0.0.1 my-company.com"
 HOSTS_FILE="/etc/hosts"
+
+############################################
+#           Public functions               #
+############################################
 
 function add_company_entry_to_hosts_file() {
   ENTER

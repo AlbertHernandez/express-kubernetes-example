@@ -1,8 +1,11 @@
 # Description: This script is used to get the image name for the application.
 # Usage: build_docker_image <app_name> <env>
 
-source "./logger.sh"
-source "./get_image_name.sh"
+source "./kubernetes/utils/logger.sh"
+
+# ====================================================== #
+#                     Public API                         #
+# ====================================================== #
 
 function build_docker_image() {
   ENTER

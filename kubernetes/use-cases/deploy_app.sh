@@ -3,10 +3,10 @@
 # Usage: ./deploy_app.sh --app=<app_name> --env=<env>
 # Example: ./deploy_app.sh --app="express-kubernetes-example" --env="development"
 
-source "./logger.sh"
-source "./get_image_name.sh"
-source "./build_docker_image.sh"
-source "./update_version_label_in_kubernetes_deployment.sh"
+source "../utils/logger.sh"
+source "../utils/get_image_name.sh"
+source "../utils/build_docker_image.sh"
+source "../utils/update_version_label_in_kubernetes_deployment.sh"
 
 function log_help() {
   INFO "🚁 Usage: ./deploy_app.sh --app=<app_name> --env=<env>"
