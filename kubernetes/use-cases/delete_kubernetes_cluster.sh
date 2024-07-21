@@ -24,7 +24,7 @@ function delete_all_resources() {
 function main() {
   ENTER
   delete_all_resources
-#  remove_company_entry_from_hosts_file
+  remove_company_entry_from_hosts_file
   EXIT
 }
 

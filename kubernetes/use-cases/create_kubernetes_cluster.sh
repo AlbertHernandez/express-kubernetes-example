@@ -15,7 +15,7 @@ function main() {
   create_metallb_resources
   configure_metrics_server
   create_express_kubernetes_example_resources
-#  add_company_entry_to_hosts_file
+  add_company_entry_to_hosts_file
   EXIT
 }
 
