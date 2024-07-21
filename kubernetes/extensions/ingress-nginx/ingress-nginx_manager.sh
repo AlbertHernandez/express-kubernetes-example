@@ -12,5 +12,6 @@ function create_ingress_nginx() {
 function delete_ingress_nginx() {
   ENTER
   kubectl delete all --all -n ingress-nginx
+  kubectl delete configmaps --all -n ingress-nginx
   EXIT
 }
