@@ -1,5 +1,6 @@
 source "./kubernetes/utils/logger.sh"
 source "./kubernetes/utils/update_version_label_in_kubernetes_deployment.sh"
+source "./kubernetes/utils/build_docker_image.sh"
 
 # ====================================================== #
 #                     Public API                         #

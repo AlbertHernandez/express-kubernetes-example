@@ -2,6 +2,7 @@
 # Usage: build_docker_image <app_name> <env>
 
 source "./kubernetes/utils/logger.sh"
+source "./kubernetes/utils/get_image_name.sh"
 
 # ====================================================== #
 #                     Public API                         #
