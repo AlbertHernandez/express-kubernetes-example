@@ -12,6 +12,7 @@ rules:
       /.github/actions/**/*.yml
       /.github/workflows/*.yml
       /.github/settings.yml
+      kubernetes/*
   truthy:
     ignore: |
       /.github/workflows/*.yml
