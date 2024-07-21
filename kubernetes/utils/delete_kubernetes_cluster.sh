@@ -1,4 +1,5 @@
-source "../utils/logger.sh"
+source "./logger.sh"
+source "./local_hosts_manager.sh"
 
 function delete_all_resources() {
   ENTER
@@ -9,6 +10,7 @@ function delete_all_resources() {
 function main() {
   ENTER
   delete_all_resources
+  remove_company_entry_from_hosts_file
   EXIT
 }
 
