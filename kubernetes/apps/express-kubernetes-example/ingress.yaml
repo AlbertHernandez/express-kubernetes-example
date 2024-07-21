@@ -11,6 +11,8 @@ metadata:
     my-company.com/environment: development
     my-company.com/technology: express
     my-company.com/owner: albert
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
     - host: my-company.local
