@@ -46,7 +46,7 @@ Once docker desktop is running and Kubernetes is enabled, we need to build our d
 Now, you can get resources created in the cluster, for example, the pods, by running:
 
 ```shell
-kubectl get pods
+kubectl get pods -n development
 ```
 
 If you want to deploy a new version of the service, you should make a new commit and run:
