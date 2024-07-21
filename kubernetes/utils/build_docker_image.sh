@@ -13,6 +13,6 @@ function build_docker_image() {
   local env=$2
   local image_name=$(get_image_name $app)
   INFO "🐳 Building docker image $image_name"
-  docker build -t $image_name -t $app:$env -f ../../Dockerfile ../../
+  docker build -t $image_name -t $app:$env -f ./Dockerfile .
   EXIT
 }
