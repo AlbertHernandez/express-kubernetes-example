@@ -39,6 +39,22 @@ Now, we need to install [docker desktop](https://www.docker.com/products/docker-
 
 Once docker desktop is running and Kubernetes is enabled, we need to build our docker image and create all the kubernetes resources we have configured, to do so we have automated the process with an script that you can run with:
 
+First, enable strict ARP mode, to do so you can run:
+
+```shell
+kubectl edit configmap -n kube-system kube-proxy
+```
+
+And then add `strictARP: true` to the config:
+
+```yaml
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: "ipvs"
+ipvs:
+  strictARP: true # <-- This one
+```
+
 ```shell
 make create-kubernetes-cluster
 ```
