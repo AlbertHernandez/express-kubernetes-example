@@ -1,6 +1,6 @@
 source "./kubernetes/utils/logger.sh"
 
-ENTRY="127.0.0.1 my-company.com"
+ENTRY="127.0.0.1 my-company.local"
 HOSTS_FILE="/etc/hosts"
 
 ############################################

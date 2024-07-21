@@ -13,7 +13,7 @@ metadata:
     my-company.com/owner: albert
 spec:
   rules:
-    - host: my-company.com
+    - host: my-company.local
       http:
         paths:
           - path: /
