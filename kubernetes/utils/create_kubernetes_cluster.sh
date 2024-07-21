@@ -26,7 +26,7 @@ function create_namespaces() {
 
 function configure_hpa_tools() {
   ENTER
-  kubectl apply -f ./metrics-server/component-v0.7.1.yaml
+  kubectl apply -f ../extensions/metrics-server/component-v0.7.1.yaml
   EXIT
 }
 
@@ -41,20 +41,26 @@ function create_express_kubernetes_example_resources() {
   EXIT
 }
 
-function create_api_gateway() {
+function create_nginx() {
   ENTER
-  kubectl apply -f ../cluster/api-gateway/ingress-nginx/nginx-v1.11.1.yaml
-  kubectl apply -f ../cluster/api-gateway/metallb/metallb-v0.14.7.yaml
+  kubectl apply -f ../extensions/ingress-nginx/nginx-v1.11.1.yaml
+  EXIT
+}
+
+function create_metallb() {
+  ENTER
+  kubectl apply -f ../extensions/metallb/metallb-v0.14.7.yaml
   kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io metallb-webhook-configuration
-  kubectl apply -f ../cluster/api-gateway/metallb/pool.yaml
-  kubectl apply -f ../cluster/api-gateway/metallb/l2advertisement.yaml
+  kubectl apply -f ../extensions/metallb/pool.yaml
+  kubectl apply -f ../extensions/metallb/l2advertisement.yaml
   EXIT
 }
 
 function main() {
   ENTER
   create_namespaces
-  create_api_gateway
+  create_nginx
+  create_metallb
   configure_hpa_tools
   create_express_kubernetes_example_resources
   add_company_entry_to_hosts_file

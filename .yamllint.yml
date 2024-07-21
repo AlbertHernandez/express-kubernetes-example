@@ -2,7 +2,7 @@ extends: default
 
 ignore: |
   node_modules/
-  kubernetes/utils/metrics-server/*
+  kubernetes/extensions/*
 
 rules:
   document-start:
