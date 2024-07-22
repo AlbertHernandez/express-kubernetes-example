@@ -20,4 +20,4 @@ spec:
   selector:
     app.kubernetes.io/name: express-kubernetes-example
     my-company.com/environment: development
-  type: LoadBalancer
+  type: ClusterIP
