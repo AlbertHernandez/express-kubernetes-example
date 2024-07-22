@@ -23,7 +23,7 @@ Are you thinking in start new projects in nestjs, other frameworks or create a s
 
 ## ☁️ Cluster High Level Architecture
 
-<img src="images/kubernetes-cluster-dark.png" alt="Cluster high level architecture" width="1396" />
+<img src="images/kubernetes-cluster.png" alt="Cluster high level architecture" width="1396" />
 
 The cluster is composed by the following resources:
 
