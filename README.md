@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://kubernetes.io/" target="blank"><img src="images/k8s-nodejs.png" alt="NodeJS K8s Logo" width="512" /></a>
+  <a href="https://kubernetes.io/" target="blank"><img src="images/k8s-node.png" alt="NodeJS K8s Logo" width="512" /></a>
 </p>
 
 <h1 align="center">⭐ Express Kubernetes Example ⭐</h1>
