@@ -21,6 +21,20 @@ Are you thinking in start new projects in nestjs, other frameworks or create a s
 - [Template for new Typescript Express Services](https://github.com/AlbertHernandez/express-kubernetes-example)
 - [Template for new GitHub Actions based on NodeJS](https://github.com/AlbertHernandez/github-action-nodejs-template)
 
+## ☁️ Cluster High Level Architecture
+
+<img src="images/kubernetes-cluster.png" alt="Cluster high level architecture" width="1396" />
+
+The cluster is composed by the following resources:
+
+- **Namespace**: It is the resource that will group all the resources that are related to the development environment.
+- **Ingress**: It is the entry point of the cluster, it will route the requests to the correct service. Is done using the [nginx-ingress](https://kubernetes.github.io/ingress-nginx/) controller.
+- **Express Service**: Is in charge of group the set of Pods that are running the express application.
+- **Pods**: Are the containers where the express application is running.
+- **ReplicaSet**: Is the resource that will ensure that the number of pods is the desired one.
+- **Deployment**: Indicates the rules to create and update the pods.
+- **HPA**: Is the resource that will scale the pods based on the CPU and Memory usage.
+
 # 🐳 Starting the Kubernetes cluster
 
 In this section we are going to explain how to start the Kubernetes cluster using docker-desktop and all the resources we have defined.
