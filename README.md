@@ -12,15 +12,6 @@
 
 The main idea of this repository is to show how we can create an express service using typescript and running it in Kubernetes. Note that this repository is not a template for starting new projects so we will not keep it up to date in terms of dependencies, vulnerabilities or new practices, if you are looking for a new template we recommend you to check the [project templates](#-project-templates) section.
 
-## 🤩 Project templates
-
-Are you thinking in start new projects in nestjs, other frameworks or create a super fancy library? I recommend you to check the following templates I have been working on:
-
-- [Template for new NestJS Services](https://github.com/AlbertHernandez/nestjs-service-template)
-- [Template for new Typescript Libraries](https://github.com/AlbertHernandez/typescript-library-template)
-- [Template for new Typescript Express Services](https://github.com/AlbertHernandez/express-kubernetes-example)
-- [Template for new GitHub Actions based on NodeJS](https://github.com/AlbertHernandez/github-action-nodejs-template)
-
 ## ☁️ Cluster High Level Architecture
 
 <img src="images/kubernetes-cluster.png" alt="Cluster high level architecture" width="1396" />
@@ -133,3 +124,12 @@ If you want to stop developing, you can stop the service running:
 ```bash
 docker-compose down
 ```
+
+## 🤩 Project templates
+
+Are you thinking in start new projects in nestjs, other frameworks or create a super fancy library? I recommend you to check the following templates I have been working on:
+
+- [Template for new NestJS Services](https://github.com/AlbertHernandez/nestjs-service-template)
+- [Template for new Typescript Libraries](https://github.com/AlbertHernandez/typescript-library-template)
+- [Template for new Typescript Express Services](https://github.com/AlbertHernandez/express-kubernetes-example)
+- [Template for new GitHub Actions based on NodeJS](https://github.com/AlbertHernandez/github-action-nodejs-template)
