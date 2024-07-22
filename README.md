@@ -28,7 +28,7 @@ The cluster is composed by the following resources:
 
 # 🐳 Starting the Kubernetes cluster
 
-In this section we are going to explain how to start the Kubernetes cluster using docker-desktop and all the resources we have defined.
+In this section we are going to explain how to start the Kubernetes with all the resources we have defined.
 
 ## ⚙️ Installation
 
@@ -40,9 +40,12 @@ brew install kubectl
 
 Now, we need to install [docker desktop](https://www.docker.com/products/docker-desktop) app. Once we have it, let's enable Kubernetes, we can do it by going to the settings and enabling the Kubernetes checkbox. For more information, you can check the [official documentation](https://docs.docker.com/desktop/kubernetes/).
 
+> [!NOTE]
+> As an alternative, you can use [minikube](https://minikube.sigs.k8s.io/docs/start/), [MicroK8s](https://microk8s.io/) or similar tool to start a local cluster.
+
 ## 🚀 Starting the cluster
 
-Once docker desktop is running and Kubernetes is enabled, we need to build our docker image and create all the kubernetes resources we have configured, to do so we have automated the process with an script that you can run with:
+Once the Kubernetes cluster is enabled, we need to build our docker image and create all the kubernetes resources we have configured, to do so we have automated the process with an script that you can run with:
 
 ```shell
 ./kubernetes/use-cases/create_kubernetes_cluster.sh
@@ -72,9 +75,9 @@ In case you want to delete all the cluster, you can run:
 ./kubernetes/use-cases/delete_kubernetes_cluster.sh
 ```
 
-## 🧑‍💻 Developing
+## 🧑‍💻 Developing in the express service
 
-First, we will need to create our .env file, we can create a copy from the example one:
+First, we will need to create our `.env` file, we can create a copy from the example one:
 
 ```bash
 cp .env.example .env
