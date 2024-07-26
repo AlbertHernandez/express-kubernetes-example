@@ -8,3 +8,4 @@ coverage/
 .vscode
 .nyc_output
 k6-results
+.decrypted*
