@@ -15,6 +15,14 @@ _convert_yaml_data_to_base64() {
     echo "$base64_content"
 }
 
+function _configure_values() {
+  ENTER
+  local app=$1
+  local env=$2
+  kubectl apply -f ./kubernetes/apps/$app/conf/values.yaml -n $env
+  EXIT
+}
+
 function _configure_secrets() {
   ENTER
   local app=$1
@@ -23,6 +31,14 @@ function _configure_secrets() {
   local decrypted_file=$(sops decrypt "$file" --output-type yaml)
   local yaml_result=$(_convert_yaml_data_to_base64 "$decrypted_file")
   kubectl apply -f - -n $env <<< "$yaml_result"
+  EXIT
+}
+
+function _restart_to_apply_new_env_vars() {
+  ENTER
+  local app=$1
+  local env=$2
+  kubectl rollout restart deployment $app -n $env
   EXIT
 }
 
@@ -35,8 +51,8 @@ function configure_env_vars() {
   ENTER
   local app=$1
   local env=$2
-  kubectl apply -f ./kubernetes/apps/$app/conf/values.yaml -n $env
+  _configure_values $app $env
   _configure_secrets $app $env
-  kubectl rollout restart deployment $app -n $env # Force the restart of the deployment to use the new environment variables
+  _restart_to_apply_new_env_vars $app $env
   EXIT
 }
