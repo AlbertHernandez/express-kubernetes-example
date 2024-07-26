@@ -3,6 +3,7 @@ source "./kubernetes/utils/local_hosts_manager.sh"
 source "./kubernetes/extensions/metallb/metallb_manager.sh"
 source "./kubernetes/extensions/ingress-nginx/ingress-nginx_manager.sh"
 source "./kubernetes/extensions/metrics-server/metrics_server_manager.sh"
+source "./kubernetes/extensions/monitoring/monitoring_manager.sh"
 
 function delete_development_resources() {
   ENTER
@@ -18,13 +19,14 @@ function delete_all_resources() {
   delete_ingress_nginx
   delete_metrics_server
   delete_metallb_resources
+  delete_monitoring
   EXIT
 }
 
 function main() {
   ENTER
   delete_all_resources
-  remove_company_entry_from_hosts_file
+  remove_service_from_hosts_file "my-company"
   EXIT
 }
 
