@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: express-kubernetes-example
+  namespace: development
+  labels:
+    app.kubernetes.io/name: express-kubernetes-example
+    app.kubernetes.io/component: server
+    app.kubernetes.io/part-of: express-kubernetes-example
+    my-company.com/environment: development
+    my-company.com/technology: express
+    my-company.com/owner: albert
+data:
+  SERVICE_NAME: "express-kubernetes-example"
+  NODE_ENV: "production"
+  PORT: "3000"

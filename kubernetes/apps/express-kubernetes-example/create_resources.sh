@@ -13,5 +13,6 @@ function create_express_kubernetes_example_resources() {
   update_version_label_in_kubernetes_deployment "express-kubernetes-example" "development"
   kubectl apply -f ./kubernetes/apps/express-kubernetes-example/service.yaml -n development
   kubectl apply -f ./kubernetes/apps/express-kubernetes-example/hpa.yaml -n development
+  kubectl apply -f ./kubernetes/apps/express-kubernetes-example/conf/values.yaml -n development
   EXIT
 }

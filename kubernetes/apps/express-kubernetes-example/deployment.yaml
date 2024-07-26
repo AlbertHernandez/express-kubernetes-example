@@ -45,6 +45,9 @@ spec:
             limits:
               cpu: 256m
               memory: 300Mi
+          envFrom:
+            - configMapRef:
+                name: express-kubernetes-example
           livenessProbe:
             httpGet:
               path: /api/health
