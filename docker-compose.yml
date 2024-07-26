@@ -8,6 +8,9 @@ services:
       context: .
       args:
         - PORT=${PORT:-3000}
+    environment:
+      - SERVICE_NAME=${SERVICE_NAME}
+      - NODE_ENV=production
     ports:
       - "${PORT:-3000}:${PORT:-3000}"
     deploy:

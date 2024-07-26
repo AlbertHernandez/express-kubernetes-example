@@ -28,7 +28,9 @@ export class Server {
     return new Promise(resolve => {
       this.httpServer = this.app.listen(config.server.port, () => {
         const { port } = this.httpServer?.address() as AddressInfo;
-        this.logger.info(`App is ready and listening on port ${port} 🚀`);
+        this.logger.info(
+          `App ${config.serviceName} is ready and listening on port ${port} 🚀`,
+        );
         resolve();
       });
     });
