@@ -48,6 +48,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: express-kubernetes-example
+            - secretRef:
+                name: express-kubernetes-example
           livenessProbe:
             httpGet:
               path: /api/health
