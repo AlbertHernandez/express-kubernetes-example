@@ -9,8 +9,17 @@ source "./kubernetes/apps/express-kubernetes-example/create_resources.sh"
 source "./kubernetes/api-gateway/create_api_gateway.sh"
 source "./kubernetes/utils/local_hosts_manager.sh"
 
+function configure_sops() {
+  ENTER
+  INFO "🔐 Configuring sops..."
+  gpg --import sops.asc
+  export SOPS_PGP_FP="D7229043384BCC60326C6FB9D8720D957C3D3074"
+  EXIT
+}
+
 function main() {
   ENTER
+  configure_sops
   create_namespaces
   create_ingress_nginx
   create_metallb_resources
