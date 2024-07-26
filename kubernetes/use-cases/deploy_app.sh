@@ -7,6 +7,7 @@ source "./kubernetes/utils/logger.sh"
 source "./kubernetes/utils/get_image_name.sh"
 source "./kubernetes/utils/build_docker_image.sh"
 source "./kubernetes/utils/update_version_label_in_kubernetes_deployment.sh"
+source "./kubernetes/utils/configure_env_vars.sh"
 
 function log_help() {
   INFO "🚁 Usage: ./deploy_app.sh --app=<app_name> --env=<env>"
@@ -83,6 +84,7 @@ function update_kubernetes_deployment() {
   INFO "💃 Updating kubernetes deployment with the new image $image_name"
   kubectl set image deployment/$app_name $app_name=$image_name -n $env
   update_version_label_in_kubernetes_deployment $app_name $env
+  configure_env_vars $app_name $env
   EXIT
 }
 
