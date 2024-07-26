@@ -11,7 +11,8 @@ function _configure_prometheus_and_grafana() {
   helm repo update
   helm install prometheus \
     -n monitoring prometheus-community/kube-prometheus-stack \
-    --create-namespace
+    --create-namespace \
+    --values ./kubernetes/extensions/monitoring/prometheus-grafana-values.yml
   EXIT
 }
 
