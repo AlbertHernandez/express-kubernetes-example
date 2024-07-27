@@ -3,27 +3,27 @@ import pino from "pino";
 
 import { Logger } from "./logger";
 
+export type LoggerLevel =
+  | "TRACE"
+  | "DEBUG"
+  | "INFO"
+  | "WARN"
+  | "ERROR"
+  | "FATAL";
+
+export const DEFAULT_LOGGER_LEVEL: LoggerLevel = "INFO";
+
 export class PinoLogger implements Logger {
   private readonly logger;
 
-  constructor() {
+  constructor({ level = DEFAULT_LOGGER_LEVEL } = {}) {
     this.logger = pino({
-      mixin: () => {
-        const properties: Record<string, string> = {};
-
-        const span = trace.getSpan(context.active());
-
-        if (span) {
-          const spanContext = span.spanContext();
-
-          if (isSpanContextValid(spanContext)) {
-            properties.trace_id = spanContext.traceId;
-            properties.span_id = spanContext.spanId;
-          }
-        }
-
-        return properties;
+      level: this.getGetPinoLevelFrom(level),
+      messageKey: "message",
+      formatters: {
+        level: this.formatLevel.bind(this),
       },
+      base: undefined,
     });
   }
 
@@ -31,8 +31,65 @@ export class PinoLogger implements Logger {
     const msg = {
       message,
       attributes,
+      ...this.getObservabilityInformation(),
     };
 
     this.logger.info(msg);
+  }
+
+  private getObservabilityInformation() {
+    const timestamp = new Date(Date.now()).toISOString();
+    const observabilityContext: Record<string, string> = {
+      timestamp,
+    };
+
+    const span = trace.getSpan(context.active());
+
+    if (span) {
+      const spanContext = span.spanContext();
+
+      if (isSpanContextValid(spanContext)) {
+        observabilityContext.trace_id = spanContext.traceId;
+        observabilityContext.span_id = spanContext.spanId;
+      }
+    }
+
+    return observabilityContext;
+  }
+
+  private getGetPinoLevelFrom(loggerLevel: LoggerLevel): pino.Level {
+    const loggerLevelToPinoLevelMap: Record<LoggerLevel, pino.Level> = {
+      TRACE: "trace",
+      DEBUG: "debug",
+      INFO: "info",
+      WARN: "warn",
+      ERROR: "error",
+      FATAL: "fatal",
+    };
+
+    return loggerLevelToPinoLevelMap[loggerLevel];
+  }
+
+  private getSeverityLevel(label: string) {
+    const pinoLevelToSeverityLookup: Record<pino.Level, string> = {
+      trace: "DEBUG",
+      debug: "DEBUG",
+      info: "INFO",
+      warn: "WARNING",
+      error: "ERROR",
+      fatal: "CRITICAL",
+    };
+
+    return (
+      pinoLevelToSeverityLookup[label as pino.Level] ||
+      pinoLevelToSeverityLookup.info
+    );
+  }
+
+  private formatLevel(label: string, level: number) {
+    return {
+      severity: this.getSeverityLevel(label),
+      level,
+    };
   }
 }
