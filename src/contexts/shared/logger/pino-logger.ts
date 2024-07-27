@@ -19,7 +19,7 @@ export class PinoLogger implements Logger {
   constructor({ level = DEFAULT_LOGGER_LEVEL } = {}) {
     this.logger = pino({
       level: this.getGetPinoLevelFrom(level),
-      messageKey: "message",
+      messageKey: "body",
       formatters: {
         level: this.formatLevel.bind(this),
       },
@@ -27,9 +27,9 @@ export class PinoLogger implements Logger {
     });
   }
 
-  info(message: string, attributes: unknown = {}) {
+  info(body: string, attributes: unknown = {}) {
     const msg = {
-      message,
+      body,
       attributes,
       ...this.getObservabilityInformation(),
     };
