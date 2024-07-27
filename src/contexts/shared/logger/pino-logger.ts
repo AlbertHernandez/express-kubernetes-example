@@ -34,20 +34,9 @@ export class PinoLogger implements Logger {
       Body: body,
       Attributes: attributes,
       ...this.getObservabilityContext(),
-      ...this.getResourceContext(),
     };
 
     this.logger.info(msg);
-  }
-
-  private getResourceContext() {
-    return {
-      Resource: {
-        service: {
-          name: config.serviceName,
-        },
-      },
-    };
   }
 
   private getObservabilityContext() {
