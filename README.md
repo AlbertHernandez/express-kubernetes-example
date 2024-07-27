@@ -75,6 +75,17 @@ In case you want to delete all the cluster, you can run:
 ./kubernetes/use-cases/delete_kubernetes_cluster.sh
 ```
 
+## 🔎 Observability
+
+As we have commented previously, we are using grafana to observe everything in the cluster, you can access it by going to the following URL `http://grafana.my-company.local/`.
+
+The credentials are:
+
+- **Username**: `admin`
+- **Password**: `express-kubernetes-example`
+
+If you want to go directly to the logs of the express service, you can click [here](http://grafana.my-company.local/explore?schemaVersion=1&panes=%7B%221ul%22:%7B%22datasource%22:%22P8E80F9AEF21F6940%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22%7Bapp_name%3D%5C%22express-kubernetes-example%5C%22%7D%20%7C%3D%20%60%60%22,%22queryType%22:%22range%22,%22datasource%22:%7B%22type%22:%22loki%22,%22uid%22:%22P8E80F9AEF21F6940%22%7D,%22editorMode%22:%22builder%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D%7D&orgId=1).
+
 ## 🧑‍💻 Developing in the express service
 
 First, we will need to create our `.env` file, we can create a copy from the example one:

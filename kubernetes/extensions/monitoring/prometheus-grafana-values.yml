@@ -973,7 +973,7 @@ grafana:
   ##
   defaultDashboardsEditable: true
 
-  adminPassword: "12345"
+  adminPassword: "express-kubernetes-example"
 
   rbac:
     ## If true, Grafana PSPs will be created
