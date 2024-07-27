@@ -1,6 +1,8 @@
 import { context, isSpanContextValid, trace } from "@opentelemetry/api";
 import pino from "pino";
 
+import { config } from "@/app/config/config";
+
 import { Logger } from "./logger";
 
 export type LoggerLevel =
@@ -19,7 +21,7 @@ export class PinoLogger implements Logger {
   constructor({ level = DEFAULT_LOGGER_LEVEL } = {}) {
     this.logger = pino({
       level: this.getGetPinoLevelFrom(level),
-      messageKey: "body",
+      messageKey: "Body",
       formatters: {
         level: this.formatLevel.bind(this),
       },
@@ -29,18 +31,28 @@ export class PinoLogger implements Logger {
 
   info(body: string, attributes: unknown = {}) {
     const msg = {
-      body,
-      attributes,
-      ...this.getObservabilityInformation(),
+      Body: body,
+      Attributes: attributes,
+      ...this.getObservabilityContext(),
+      ...this.getResourceContext(),
     };
 
     this.logger.info(msg);
   }
 
-  private getObservabilityInformation() {
-    const timestamp = new Date(Date.now()).toISOString();
+  private getResourceContext() {
+    return {
+      Resource: {
+        service: {
+          name: config.serviceName,
+        },
+      },
+    };
+  }
+
+  private getObservabilityContext() {
     const observabilityContext: Record<string, string> = {
-      timestamp,
+      ReadableTimestamp: new Date(Date.now()).toISOString(),
     };
 
     const span = trace.getSpan(context.active());
@@ -49,8 +61,9 @@ export class PinoLogger implements Logger {
       const spanContext = span.spanContext();
 
       if (isSpanContextValid(spanContext)) {
-        observabilityContext.trace_id = spanContext.traceId;
-        observabilityContext.span_id = spanContext.spanId;
+        observabilityContext.TraceId = spanContext.traceId;
+        observabilityContext.SpanId = spanContext.spanId;
+        observabilityContext.TraceFlags = `0${spanContext.traceFlags.toString(16)}`;
       }
     }
 
@@ -86,9 +99,25 @@ export class PinoLogger implements Logger {
     );
   }
 
+  private getSeverityNumber(label: string): number {
+    const pinoLevelToSeverityNumber: Record<pino.Level, number> = {
+      trace: 1,
+      debug: 5,
+      info: 9,
+      warn: 13,
+      error: 17,
+      fatal: 21,
+    };
+    return (
+      pinoLevelToSeverityNumber[label as pino.Level] ||
+      pinoLevelToSeverityNumber.info
+    );
+  }
+
   private formatLevel(label: string, level: number) {
     return {
-      severity: this.getSeverityLevel(label),
+      SeverityText: this.getSeverityLevel(label),
+      SeverityNumber: this.getSeverityNumber(label),
       level,
     };
   }
