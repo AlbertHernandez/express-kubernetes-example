@@ -3,6 +3,8 @@ loki:
   auth_enabled: false
   commonConfig:
     replication_factor: 1
+  limits_config:
+    allow_structured_metadata: true
   storage:
     type: 'filesystem'
   schemaConfig:
