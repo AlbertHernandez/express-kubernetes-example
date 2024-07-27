@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { vi } from "vitest";
 
-import { ConsoleLogger } from "@/shared/logger/console-logger";
+import { PinoLogger } from "@/shared/logger/pino-logger.ts";
 import { Logger } from "@/shared/logger/logger";
 
 import { UserController } from "@/contexts/users/api/user-controller";
@@ -19,7 +19,7 @@ describe("UserController", () => {
       status: vi.fn().mockReturnThis(),
       send: vi.fn(),
     } as unknown as Response;
-    logger = new ConsoleLogger();
+    logger = new PinoLogger();
     controller = new UserController({ logger });
   });
 

@@ -6,7 +6,7 @@ import express, { Express } from "express";
 import { config } from "@/app/config/config";
 import { healthRouter } from "@/app/health/api/health-router";
 
-import { ConsoleLogger } from "@/shared/logger/console-logger";
+import { PinoLogger } from "@/shared/logger/pino-logger";
 import { Logger } from "@/shared/logger/logger";
 
 import { userRouter } from "@/contexts/users/api/user-router";
@@ -17,7 +17,7 @@ export class Server {
   private readonly logger: Logger;
 
   constructor() {
-    this.logger = new ConsoleLogger();
+    this.logger = new PinoLogger();
     this.app = express();
     this.app.use(express.json());
     this.app.use("/api/health", healthRouter);
