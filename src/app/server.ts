@@ -9,7 +9,7 @@ import { config } from "@/app/config/config";
 import { healthRouter } from "@/app/health/api/health-router";
 
 import { Logger } from "@/shared/logger/logger";
-import { OpenTelemetryLogger } from "@/shared/logger/open-telemetry-logger";
+import { PinoLogger } from "@/shared/logger/pino-logger";
 
 import { userRouter } from "@/contexts/users/api/user-router";
 
@@ -19,7 +19,7 @@ export class Server {
   private readonly logger: Logger;
 
   constructor() {
-    this.logger = new OpenTelemetryLogger();
+    this.logger = new PinoLogger();
     this.app = express();
     this.app.use(express.json());
     this.app.use("/api/health", healthRouter);

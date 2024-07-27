@@ -1,15 +1,8 @@
 import { Attributes, SpanKind } from "@opentelemetry/api";
-import { logs } from "@opentelemetry/api-logs";
-import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-proto";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { ExpressInstrumentation } from "@opentelemetry/instrumentation-express";
 import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
 import { Resource } from "@opentelemetry/resources";
-import {
-  ConsoleLogRecordExporter,
-  LoggerProvider,
-  SimpleLogRecordProcessor,
-} from "@opentelemetry/sdk-logs";
 import {
   AlwaysOnSampler,
   Sampler,
@@ -34,23 +27,8 @@ const provider = new NodeTracerProvider({
 });
 registerInstrumentations({
   tracerProvider: provider,
-  instrumentations: [
-    new HttpInstrumentation(),
-    new ExpressInstrumentation(),
-  ],
+  instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation()],
 });
-
-const loggerProvider = new LoggerProvider({
-  resource,
-});
-
-const logExporter = new ConsoleLogRecordExporter();
-loggerProvider.addLogRecordProcessor(new SimpleLogRecordProcessor(logExporter));
-
-logs.setGlobalLoggerProvider(loggerProvider);
-
-const traceExporter = new OTLPTraceExporter();
-provider.addSpanProcessor(new SimpleSpanProcessor(traceExporter));
 
 provider.register();
 
