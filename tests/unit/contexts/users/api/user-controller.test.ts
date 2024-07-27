@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { vi } from "vitest";
 
-import { PinoLogger } from "@/shared/logger/pino-logger.ts";
 import { Logger } from "@/shared/logger/logger";
+import { PinoLogger } from "@/shared/logger/pino-logger.ts";
 
 import { UserController } from "@/contexts/users/api/user-controller";
 
