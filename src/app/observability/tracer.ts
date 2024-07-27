@@ -1,4 +1,5 @@
 import { Attributes, SpanKind } from "@opentelemetry/api";
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-proto";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { ExpressInstrumentation } from "@opentelemetry/instrumentation-express";
 import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
@@ -7,6 +8,7 @@ import {
   AlwaysOnSampler,
   Sampler,
   SamplingDecision,
+  SimpleSpanProcessor,
 } from "@opentelemetry/sdk-trace-base";
 import { NodeTracerProvider } from "@opentelemetry/sdk-trace-node";
 import {
@@ -26,6 +28,10 @@ registerInstrumentations({
   tracerProvider: provider,
   instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation()],
 });
+
+const exporter = new OTLPTraceExporter();
+
+provider.addSpanProcessor(new SimpleSpanProcessor(exporter));
 
 provider.register();
 
