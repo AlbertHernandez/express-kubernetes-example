@@ -33,7 +33,6 @@ RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ".npmrc" && \
 
 COPY tsconfig*.json .
 COPY .swcrc .
-COPY instrumentation.cjs .
 COPY src src
 
 RUN npm run build && \
@@ -46,10 +45,9 @@ ENV USER=node
 
 COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
 COPY --from=build $DIR/package*.json .
-COPY --from=build $DIR/instrumentation.cjs .
 COPY --from=build $DIR/node_modules node_modules
 COPY --from=build $DIR/dist dist
 
 USER $USER
 EXPOSE $PORT
-CMD ["dumb-init", "node", "-r", "./instrumentation.cjs", "dist/main.js"]
+CMD ["dumb-init", "node", "dist/main.js"]
