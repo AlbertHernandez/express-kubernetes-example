@@ -1,3 +1,5 @@
+import "./observability/tracer";
+
 import http from "node:http";
 import { AddressInfo } from "node:net";
 
@@ -6,8 +8,8 @@ import express, { Express } from "express";
 import { config } from "@/app/config/config";
 import { healthRouter } from "@/app/health/api/health-router";
 
-import { PinoLogger } from "@/shared/logger/pino-logger";
 import { Logger } from "@/shared/logger/logger";
+import { PinoLogger } from "@/shared/logger/pino-logger";
 
 import { userRouter } from "@/contexts/users/api/user-router";
 
