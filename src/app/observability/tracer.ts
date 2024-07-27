@@ -1,9 +1,16 @@
 import { Attributes, SpanKind } from "@opentelemetry/api";
+import { logs } from "@opentelemetry/api-logs";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-proto";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { ExpressInstrumentation } from "@opentelemetry/instrumentation-express";
 import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
+import { PinoInstrumentation } from "@opentelemetry/instrumentation-pino";
 import { Resource } from "@opentelemetry/resources";
+import {
+  ConsoleLogRecordExporter,
+  LoggerProvider,
+  SimpleLogRecordProcessor,
+} from "@opentelemetry/sdk-logs";
 import {
   AlwaysOnSampler,
   Sampler,
@@ -16,22 +23,36 @@ import {
   SEMRESATTRS_SERVICE_NAME,
 } from "@opentelemetry/semantic-conventions";
 
-const SERVICE_NAME = "express-kubernetes-example";
+import { config } from "@/app/config/config";
+
+const resource = new Resource({
+  [SEMRESATTRS_SERVICE_NAME]: config.serviceName,
+});
 
 const provider = new NodeTracerProvider({
-  resource: new Resource({
-    [SEMRESATTRS_SERVICE_NAME]: SERVICE_NAME,
-  }),
+  resource,
   sampler: filterSampler(ignoreHealthCheck, new AlwaysOnSampler()),
 });
 registerInstrumentations({
   tracerProvider: provider,
-  instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation()],
+  instrumentations: [
+    new HttpInstrumentation(),
+    new ExpressInstrumentation(),
+    new PinoInstrumentation(),
+  ],
 });
 
-const exporter = new OTLPTraceExporter();
+const loggerProvider = new LoggerProvider({
+  resource,
+});
 
-provider.addSpanProcessor(new SimpleSpanProcessor(exporter));
+const logExporter = new ConsoleLogRecordExporter();
+loggerProvider.addLogRecordProcessor(new SimpleLogRecordProcessor(logExporter));
+
+logs.setGlobalLoggerProvider(loggerProvider);
+
+const traceExporter = new OTLPTraceExporter();
+provider.addSpanProcessor(new SimpleSpanProcessor(traceExporter));
 
 provider.register();
 
