@@ -51,8 +51,10 @@ export class PinoLogger implements Logger {
   }
 
   private getObservabilityContext() {
+    const now = Date.now();
     const observabilityContext: Record<string, string> = {
-      ReadableTimestamp: new Date(Date.now()).toISOString(),
+      ReadableTimestamp: new Date(now).toISOString(),
+      Timestamp: now.toString(),
     };
 
     const span = trace.getSpan(context.active());
