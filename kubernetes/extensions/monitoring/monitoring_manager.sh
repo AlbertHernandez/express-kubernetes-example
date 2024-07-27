@@ -25,6 +25,17 @@ function _configure_loki() {
   EXIT
 }
 
+function _configure_alloy() {
+  ENTER
+  helm repo add grafana https://grafana.github.io/helm-charts
+  helm repo update
+  kubectl create configmap -n monitoring alloy-config "--from-file=config.alloy=./kubernetes/extensions/monitoring/config.alloy"
+  helm install alloy grafana/alloy \
+    -n monitoring \
+    -f ./kubernetes/extensions/monitoring/alloy-values.yaml
+  EXIT
+}
+
 function _configure_ingress() {
   ENTER
   kubectl apply -f ./kubernetes/extensions/monitoring/ingress.yaml -n monitoring
@@ -39,6 +50,7 @@ function configure_monitoring() {
   ENTER
   _configure_prometheus_and_grafana
   _configure_loki
+  _configure_alloy
   _configure_ingress
   add_service_to_hosts_file "grafana.my-company"
   EXIT
@@ -48,7 +60,9 @@ function delete_monitoring() {
   ENTER
   helm uninstall prometheus -n monitoring
   helm uninstall loki -n monitoring
+  helm uninstall alloy -n monitoring
   kubectl delete -f ./kubernetes/extensions/monitoring/ingress.yaml -n monitoring
+  kubectl delete configmaps --all -n monitoring
   remove_service_from_hosts_file "grafana.my-company"
   EXIT
 }
