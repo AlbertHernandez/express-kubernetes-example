@@ -4,7 +4,6 @@ import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-proto";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { ExpressInstrumentation } from "@opentelemetry/instrumentation-express";
 import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
-import { PinoInstrumentation } from "@opentelemetry/instrumentation-pino";
 import { Resource } from "@opentelemetry/resources";
 import {
   ConsoleLogRecordExporter,
@@ -38,7 +37,6 @@ registerInstrumentations({
   instrumentations: [
     new HttpInstrumentation(),
     new ExpressInstrumentation(),
-    new PinoInstrumentation(),
   ],
 });
 
