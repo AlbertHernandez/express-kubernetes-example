@@ -77,9 +77,22 @@ In case you want to delete all the cluster, you can run:
 
 ## 🔎 Observability
 
-As we have commented previously, we are using grafana to observe everything in the cluster, you can access it by going to the following URL `http://grafana.my-company.local/`.
+For the observability, we have created a set of resources that will help us to monitor the cluster. All these resources are located under the `monitoring` namespace in our kubernetes cluster, and this is the big picture:
 
-The credentials are:
+<img src="images/monitoring.png" alt="Cluster high level architecture" width="1096" />
+
+As we can see, this namespace is composed by the following resources:
+
+- **[Alloy](https://grafana.com/docs/alloy/latest/)**: Is a OpenTelemetry collector that allow us to get all logs and send them to Loki.
+- **[Loki](https://grafana.com/docs/loki/latest/)**: Is a log aggregation system that will store all the logs.
+- **[Prometheus](https://prometheus.io/)**: Is a monitoring system that will store all the metrics.
+- **[AlertManager](https://prometheus.io/docs/alerting/alertmanager/)**: Is the alerting system that will send alerts based on metrics.
+- **[Grafana](https://grafana.com/)**: Is the dashboard that will show all the metrics and logs.
+- **Ingress**: Exposes the Grafana dashboard to the developers
+
+Grafana can be accessed through the following URL: `http://grafana.my-company.local/`.
+
+🔑 The credentials are:
 
 - **Username**: `admin`
 - **Password**: `express-kubernetes-example`
