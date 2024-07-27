@@ -52,4 +52,4 @@ COPY --from=build $DIR/dist dist
 
 USER $USER
 EXPOSE $PORT
-CMD ["dumb-init", "node", "dist/main.js"]
+CMD ["dumb-init", "node", "-r", "./instrumentation.cjs", "dist/main.js"]
